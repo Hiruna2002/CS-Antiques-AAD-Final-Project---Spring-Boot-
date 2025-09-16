@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - CS Antiques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/adminDashboard.css">
+
+</head>
+<body>
+<!-- Sidebar -->
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <i class="fas fa-chess-rook fa-2x"></i>
+        <h2>CS Antiques</h2>
+    </div>
+
+    <ul class="sidebar-menu">
+        <li><a href="#" class="active" id="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+        <li><a href="#" id="addProduct"><i class="fas fa-home"></i> <span>Add Product</span></a></li>
+        <li><a href="#" id="orders"><i class="fas fa-shopping-cart"></i> <span>Orders</span></a></li>
+        <li><a href="#" id="products"><i class="fas fa-box"></i> <span>Products</span></a></li>
+        <li><a href="#" id="customers"><i class="fas fa-users"></i> <span>Customers</span></a></li>
+        <li><a href="#" id="employee"><i class="fas fa-users"></i> <span>Employee</span></a></li>
+        <li><a href="#" id="analytics"><i class="fas fa-chart-line"></i> <span>Analytics</span></a></li>
+        <li><a href="#" id="Setting"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+        <li><a href="#"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+    </ul>
+</aside>
+
+<!-- Main Content -->
+<main class="main-content">
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search...">
+        </div>
+
+        <div class="user-info">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'><circle cx='20' cy='20' r='20' fill='%23FF9500'/><text x='50%' y='50%' font-size='16' dy='.3em' fill='white' text-anchor='middle' font-weight='bold'>A</text></svg>" alt="Admin">
+            <div>
+                <div>Admin User</div>
+                <small>Administrator</small>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <section class="dashboard">
+        <div class="page-title">
+            <h1>Admin Dashboard</h1>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon orange">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>152</h3>
+                    <p>Total Orders</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon yellow">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>$8,542</h3>
+                    <p>Total Revenue</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon gray">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>86</h3>
+                    <p>Total Customers</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>42</h3>
+                    <p>Total Products</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Product -->
+        <main class="form-container">
+            <!-- Dashboard Content -->
+            <section class="dashboard">
+                <div class="page-title">
+                    <h1>Product Management</h1>
+                </div>
+
+                <!-- Marketplace Selection Tabs -->
+                <div class="marketplace-tabs">
+                    <div class="tab active" data-marketplace="original" id="originalTab">
+                        <i class="fas fa-star"></i> Original Antiques
+                    </div>
+                    <div class="tab" data-marketplace="reproduction" id="reproductionTab">
+                        <i class="fas fa-copy"></i> Antiques Reproduction
+                    </div>
+                </div>
+
+                <!-- Add Product Form -->
+                <div class="form-container">
+                    <h2>Add New Product</h2>
+                    <form id="addProductForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productName">Product Name</label>
+                                <input type="text" id="productName" placeholder="Enter product name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productPrice">Price (Rs.)</label>
+                                <input type="number" id="productPrice" placeholder="Enter price" step="0.01" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productCategory">Category</label>
+                                <select id="productCategory" required>
+                                    <option value="">Select category</option>
+                                    <!-- Options will be populated based on marketplace selection -->
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productImage">Product Image URL</label>
+                                <input type="text" id="productImage" placeholder="Paste image URL">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productDescription">Description</label>
+                            <textarea id="productDescription" rows="3" placeholder="Enter product description"></textarea>
+                        </div>
+
+                        <div id="width-height-length">
+                            <div class="form-group">
+                                <label for="productWidth">Width</label>
+                                <input type="text" id="productWidth" placeholder="Enter product Width">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productWidth">Height</label>
+                                <input type="text" id="productHeight" placeholder="Enter product Height">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productWidth">Length</label>
+                                <input type="text" id="productLength" placeholder="Enter product Length">
+                            </div>
+                        </div>
+                        <div class="timeLine-stock">
+                            <div class="form-group timeLine">
+                                <label for="productTimeLine">TimeLine</label>
+                                <input type="text" id="productTimeLine" placeholder="Enter product TimeLine">
+                            </div>
+                            <div class="form-group stock">
+                                <label for="inStock">In Stock</label>
+                                <input type="text" id="inStock" placeholder="inStock">
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="productMarketplace" value="original">
+
+                        <button type="submit" class="btn btn-primary" id="addProductBtn">Add Product</button>
+                    </form>
+                </div>
+
+                <!-- Product Preview -->
+                <div class="preview-container">
+                    <h3 class="preview-title">Product Preview</h3>
+                    <div class="product-preview">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23FFDE21'/><text x='50%' y='50%' font-size='14' dy='.3em' fill='%23FF9500' text-anchor='middle'>Product Image Preview</text></svg>" alt="Product preview" class="preview-image" id="previewImage">
+                        <div class="preview-details">
+                            <div class="preview-category" id="previewCategory">Category</div>
+                            <h3 class="preview-name" id="previewName">Product Name</h3>
+                            <div class="preview-price" id="previewPrice">Rs.0.00</div>
+                            <p class="preview-description" id="previewDescription">Product description will appear here.</p>
+                            <div class="marketplace-badge badge-original" id="marketplaceBadge">Original Antiques</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Charts and Orders Row -->
+        <div class="dashboard-row">
+            <!-- Sales Chart -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h2>Sales Analytics</h2>
+                    <select>
+                        <option>Last 7 Days</option>
+                        <option>Last 30 Days</option>
+                        <option>Last 90 Days</option>
+                    </select>
+                </div>
+                <canvas id="salesChart" height="100"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Orders -->
+        <div class="table-container">
+            <h2>Recent Orders</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>#ORD-001</td>
+                    <td>John Smith</td>
+                    <td>$245.99</td>
+                    <td><span class="status completed">Completed</span></td>
+                </tr>
+                <tr>
+                    <td>#ORD-002</td>
+                    <td>Emma Johnson</td>
+                    <td>$189.50</td>
+                    <td><span class="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                    <td>#ORD-003</td>
+                    <td>Michael Brown</td>
+                    <td>$425.00</td>
+                    <td><span class="status completed">Completed</span></td>
+                </tr>
+                <tr>
+                    <td>#ORD-004</td>
+                    <td>Sarah Williams</td>
+                    <td>$312.75</td>
+                    <td><span class="status cancelled">Cancelled</span></td>
+                </tr>
+                <tr>
+                    <td>#ORD-005</td>
+                    <td>David Miller</td>
+                    <td>$98.99</td>
+                    <td><span class="status pending">Pending</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Products Table -->
+        <div class="table-container" id="productTable">
+            <div class="chart-header">
+                <h2>Product Inventory</h2>
+                <div>
+                    <button class="btn btn-primary"><i class="fas fa-filter"></i> Filter</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="product_table">
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Customer Table -->
+        <div class="table-container" id="customerTable">
+            <div class="chart-header">
+                <h2>Customer Details</h2>
+                <div>
+                    <button class="btn btn-primary"><i class="fas fa-filter"></i> Filter</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+
+                </tr>
+                </thead>
+                <tbody id="customer_table">
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Employee Table -->
+        <div class="table-container" id="employeeTable">
+            <div class="chart-header">
+                <h2>Employee Details</h2>
+                <div>
+                    <button class="btn btn-primary" id="addEmployees"> Add Employee</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Employee Name</th>
+                    <th>Address</th>
+                    <th>Contact Number</th>
+                    <th>Email</th>
+
+                </tr>
+                </thead>
+                <tbody id="employee_tbody">
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add Employee -->
+        <main class="main-content" id="addEmployeeForm">
+            <div class="signup-container">
+                <form id="employeeSignupForm">
+                    <div class="form-group">
+                        <label for="name">Employee Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter Employee Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="number">Contact Number</label>
+                        <input type="number" id="number" name="number" required placeholder="Enter Contact Number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="number">Address</label>
+                        <input type="texe" id="address" name="address" required placeholder="Enter Address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required placeholder="Create a password">
+                    </div>
+
+
+                    <button type="submit" class="submit-btn" id="addEmployee">Add Employee</button>
+                    <button type="submit" class="submit-btn" id="backBtn">Back</button>
+                </form>
+            </div>
+        </main>
+    </section>
+</main>
+
+<script src="assest/jquery-3.7.1.min.js"></script>
+<script src="js/adminDashboard.js"></script>
+</body>
+</html>

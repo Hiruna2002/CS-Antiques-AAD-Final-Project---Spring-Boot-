@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - CS Antiques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/addToCart.css">
+</head>
+<body>
+<!-- Header with Navigation -->
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-chess-rook"></i> CS Antiques
+        </a>
+
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="marketPlace.html">Marketplace</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li class="cart-icon">
+                <a href="cart.html" class="active"><i class="fas fa-shopping-cart"></i></a>
+                <span class="cart-count">3</span>
+            </li>
+        </ul>
+
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+    <div class="breadcrumb-content">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Shopping Cart</span>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="page-header">
+        <h1>Shopping Cart</h1>
+        <a href="marketPlace.html" class="continue-shopping">
+            <i class="fas fa-arrow-left"></i> Continue Shopping
+        </a>
+    </div>
+
+    <!-- Cart Items -->
+    <div class="cart-items">
+        <div class="cart-item">
+            <div class="item-image">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect width='120' height='120' fill='%23FFDE21'/><path d='M30,30 L90,30 L90,90 L30,90 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>" alt="Vintage Pettagam Chest">
+            </div>
+            <div class="item-details">
+                <h3 class="item-name">Vintage Pettagam Chest</h3>
+                <div class="item-category">Pettagam</div>
+                <p class="item-description">Beautifully restored vintage Pettagam chest with original hardware.</p>
+                <div class="item-price">$349.99</div>
+            </div>
+            <div class="item-controls">
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(this, -1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1" onchange="updateItemTotal(this)">
+                    <button class="quantity-btn" onclick="updateQuantity(this, 1)">+</button>
+                </div>
+                <button class="remove-item" onclick="removeItem(this)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+        </div>
+
+        <div class="cart-item">
+            <div class="item-image">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect width='120' height='120' fill='%23FFDE21'/><circle cx='60' cy='60' r='25' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>" alt="Antique Brass Gramophone">
+            </div>
+            <div class="item-details">
+                <h3 class="item-name">Antique Brass Gramophone</h3>
+                <div class="item-category">Gramophone</div>
+                <p class="item-description">Fully functional antique gramophone from the 1920s with original horn.</p>
+                <div class="item-price">$599.99</div>
+            </div>
+            <div class="item-controls">
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(this, -1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1" onchange="updateItemTotal(this)">
+                    <button class="quantity-btn" onclick="updateQuantity(this, 1)">+</button>
+                </div>
+                <button class="remove-item" onclick="removeItem(this)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+        </div>
+
+        <div class="cart-item">
+            <div class="item-image">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect width='120' height='120' fill='%23FFDE21'/><path d='M40,40 L80,40 L80,80 L40,80 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>" alt="Wooden Lucky Horses">
+            </div>
+            <div class="item-details">
+                <h3 class="item-name">Wooden Lucky Horses</h3>
+                <div class="item-category">Lucky Horses</div>
+                <p class="item-description">Set of three traditional carved wooden lucky horses for home decoration.</p>
+                <div class="item-price">$89.99</div>
+            </div>
+            <div class="item-controls">
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(this, -1)">-</button>
+                    <input type="number" class="quantity-input" value="2" min="1" onchange="updateItemTotal(this)">
+                    <button class="quantity-btn" onclick="updateQuantity(this, 1)">+</button>
+                </div>
+                <button class="remove-item" onclick="removeItem(this)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+        <h2 class="summary-title">Order Summary</h2>
+
+        <div class="summary-row">
+            <span class="summary-label">Subtotal</span>
+            <span class="summary-value" id="subtotal">$1,129.97</span>
+        </div>
+
+        <div class="summary-row">
+            <span class="summary-label">Shipping</span>
+            <span class="summary-value">$49.99</span>
+        </div>
+
+        <div class="summary-row">
+            <span class="summary-label">Tax</span>
+            <span class="summary-value">$90.40</span>
+        </div>
+
+        <div class="discount-form">
+            <input type="text" class="discount-input" placeholder="Discount code">
+            <button class="apply-btn">Apply</button>
+        </div>
+
+        <div class="summary-total">
+            <span>Total</span>
+            <span id="total">$1,270.36</span>
+        </div>
+
+        <button class="checkout-btn">Proceed to Checkout</button>
+
+        <div class="secure-checkout">
+            <i class="fas fa-lock"></i>
+            <span>Secure checkout</span>
+        </div>
+    </div>
+
+    <!-- Continue Shopping Section -->
+    <div class="continue-shopping-section">
+        <h2 class="section-title">You might also like</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='120' viewBox='0 0 150 120'><rect width='150' height='120' fill='%23FFDE21'/><path d='M30,30 L120,30 L120,90 L30,90 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>" alt="Antique Wall Clock" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Antique Wall Clock</div>
+                    <div class="product-price">$275.00</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='120' viewBox='0 0 150 120'><rect width='150' height='120' fill='%23FFDE21'/><path d='M40,40 L110,40 L110,80 L40,80 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>" alt="Vintage Chimney" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Vintage Chimney</div>
+                    <div class="product-price">$459.99</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='120' viewBox='0 0 150 120'><rect width='150' height='120' fill='%23FFDE21'/><path d='M50,30 L100,30 L100,90 L50,90 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>" alt="Display Cabinet" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Display Cabinet</div>
+                    <div class="product-price">$799.99</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='120' viewBox='0 0 150 120'><rect width='150' height='120' fill='%23FFDE21'/><circle cx='75' cy='60' r='25' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>" alt="Brass Compass" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Brass Compass</div>
+                    <div class="product-price">$68.50</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>CS Antiques</h3>
+            <p>Objects with a past, pieces for your future</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="marketPlace.html">Marketplace</a></li>
+                <li><a href="#">Library</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Help & Support</h3>
+            <ul class="footer-links">
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Subscribe to get updates on new arrivals and special offers.</p>
+            <div class="search-bar">
+                <input type="email" placeholder="Your email address">
+                <button class="btn-primary">Subscribe</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>&copy; 2025 CS Antiques. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/addToCart.js"></script>
+</body>
+</html>

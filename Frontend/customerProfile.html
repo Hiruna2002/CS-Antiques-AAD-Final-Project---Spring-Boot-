@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - CS Antiques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/customerProfile.css">
+
+</head>
+<body>
+<!-- Header with Navigation -->
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-chess-rook"></i> CS Antiques
+        </a>
+
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="originals.html">Original Antiques</a></li>
+            <li><a href="reproduction.html">Antiques Reproduction</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li class="cart-icon">
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                <span class="cart-count">3</span>
+            </li>
+        </ul>
+
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+    <div class="breadcrumb-content">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>My Profile</span>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="page-header">
+        <h1>My Account</h1>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="profile-sidebar">
+        <div class="profile-user">
+            <div class="profile-avatar">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23FFDE21'/><circle cx='50' cy='40' r='20' fill='%23FF9500'/><path d='M30,85 C30,65 70,65 70,85 L30,85 Z' fill='%23FF9500'/></svg>" alt="User Avatar">
+            </div>
+            <h2 class="profile-name">Chaminda Silva</h2>
+            <p class="profile-email">chaminda@example.com</p>
+        </div>
+
+        <ul class="profile-menu">
+            <li><a href="#" class="active"><i class="fas fa-user"></i> Personal Information</a></li>
+            <li><a href="#"><i class="fas fa-shopping-bag"></i> Order History</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> Address Book</a></li>
+            <li><a href="#"><i class="fas fa-heart"></i> Wishlist</a></li>
+            <li><a href="#"><i class="fas fa-lock"></i> Change Password</a></li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Profile Content -->
+    <div class="profile-content">
+        <div class="content-header">
+            <h2 class="content-title"><i class="fas fa-user"></i> Personal Information</h2>
+            <button class="edit-toggle" id="editToggle">
+                <i class="fas fa-edit"></i> Edit Profile
+            </button>
+        </div>
+
+        <form class="profile-form" id="profileForm">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" value="Chaminda" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" value="Silva" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" value="chaminda@example.com" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" value="+94 77 123 4567" disabled>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="bio">Bio</label>
+                <textarea id="bio" rows="3" disabled>Antique collector with a passion for historical pieces, especially Pettagam chests and traditional Sri Lankan artifacts.</textarea>
+            </div>
+
+            <div class="form-actions" id="formActions" style="display: none;">
+                <button type="button" class="btn btn-outline" id="cancelBtn">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+
+        <!-- Order History -->
+        <div class="order-history">
+            <div class="content-header">
+                <h2 class="content-title"><i class="fas fa-shopping-bag"></i> Recent Orders</h2>
+                <a href="#" class="edit-toggle">View All</a>
+            </div>
+
+            <div class="order-card">
+                <div class="order-header">
+                    <div>
+                        <div class="order-id">Order #ORD-00125</div>
+                        <div class="order-date">Placed on June 15, 2023</div>
+                    </div>
+                    <span class="order-status status-delivered">Delivered</span>
+                </div>
+
+                <div class="order-details">
+                    <div class="order-image">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><rect width='80' height='80' fill='%23FFDE21'/><path d='M20,20 L60,20 L60,60 L20,60 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>" alt="Vintage Pettagam Chest">
+                    </div>
+                    <div class="order-product">
+                        <div class="order-product-name">Vintage Pettagam Chest</div>
+                        <div class="order-product-category">Pettagam • Original Antique</div>
+                    </div>
+                    <div class="order-price">$349.99</div>
+                </div>
+
+                <div class="order-footer">
+                    <div class="order-total">Total: $349.99</div>
+                    <div class="order-actions">
+                        <a href="#">View Order</a> • <a href="#">Buy Again</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <div class="order-header">
+                    <div>
+                        <div class="order-id">Order #ORD-00118</div>
+                        <div class="order-date">Placed on May 28, 2023</div>
+                    </div>
+                    <span class="order-status status-shipped">Shipped</span>
+                </div>
+
+                <div class="order-details">
+                    <div class="order-image">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><rect width='80' height='80' fill='%23FFDE21'/><circle cx='40' cy='40' r='15' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>" alt="Antique Brass Gramophone">
+                    </div>
+                    <div class="order-product">
+                        <div class="order-product-name">Antique Brass Gramophone</div>
+                        <div class="order-product-category">Gramophone • Reproduction</div>
+                    </div>
+                    <div class="order-price">$299.99</div>
+                </div>
+
+                <div class="order-footer">
+                    <div class="order-total">Total: $299.99</div>
+                    <div class="order-actions">
+                        <a href="#">View Order</a> • <a href="#">Track Package</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saved Addresses -->
+        <div class="saved-addresses">
+            <div class="content-header">
+                <h2 class="content-title"><i class="fas fa-map-marker-alt"></i> Saved Addresses</h2>
+                <button class="edit-toggle"><i class="fas fa-plus"></i> Add New</button>
+            </div>
+
+            <div class="address-grid">
+                <div class="address-card default">
+                    <span class="address-default-badge">Default</span>
+                    <h3 class="address-type">Home Address</h3>
+                    <div class="address-details">
+                        Chaminda Silva<br>
+                        123 Galle Road<br>
+                        Colombo 00300<br>
+                        Sri Lanka<br>
+                        Phone: +94 77 123 4567
+                    </div>
+                    <div class="address-actions">
+                        <button><i class="fas fa-edit"></i> Edit</button>
+                        <button><i class="fas fa-trash"></i> Remove</button>
+                    </div>
+                </div>
+
+                <div class="address-card">
+                    <h3 class="address-type">Office Address</h3>
+                    <div class="address-details">
+                        Chaminda Silva<br>
+                        ABC Company Ltd.<br>
+                        456 Union Place<br>
+                        Colombo 00200<br>
+                        Sri Lanka<br>
+                        Phone: +94 11 234 5678
+                    </div>
+                    <div class="address-actions">
+                        <button><i class="fas fa-edit"></i> Edit</button>
+                        <button><i class="fas fa-trash"></i> Remove</button>
+                        <button><i class="fas fa-star"></i> Set as Default</button>
+                    </div>
+                </div>
+
+                <div class="add-address">
+                    <i class="fas fa-plus"></i>
+                    <p>Add New Address</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>CS Antiques</h3>
+            <p>Objects with a past, pieces for your future</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="originals.html">Original Antiques</a></li>
+                <li><a href="reproduction.html">Antiques Reproduction</a></li>
+                <li><a href="library.html">Library</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Help & Support</h3>
+            <ul class="footer-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Subscribe to get updates on new arrivals and special offers.</p>
+            <div class="search-bar">
+                <input type="email" placeholder="Your email address">
+                <button class="btn-primary">Subscribe</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>&copy; 2025 CS Antiques. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/customerProfile.js"></script>
+
+</body>
+</html>

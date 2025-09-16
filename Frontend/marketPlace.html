@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Original Antiques - CS Antiques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/marketplace.css">
+</head>
+<body>
+<!-- Header with Navigation -->
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-chess-rook"></i> CS Antiques
+        </a>
+
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="marketPlace.html" class="active">Original Antiques</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li class="cart-icon">
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                <span class="cart-count">3</span>
+            </li>
+        </ul>
+
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Marketplace</h1>
+    <p>Discover unique, authentic antiques with rich history and timeless character. Each piece has a story to tell.</p>
+    <div>
+        <a href="#products" class="btn btn-primary">Explore Collection</a>
+        <a href="#categories" class="btn btn-outline">View Categories</a>
+    </div>
+</section>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="page-header">
+        <h1>Authentic Antique Treasures</h1>
+        <p>Each piece in our collection has been carefully selected for its historical significance, craftsmanship, and beauty.</p>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="marketplace-controls">
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for antiques...">
+        </div>
+
+        <div class="filters">
+            <select class="filter-select">
+                <option>All Categories</option>
+                <option>Pettagam</option>
+                <option>Chimney</option>
+                <option>Cupboard</option>
+                <option>Gramophone</option>
+                <option>Others</option>
+            </select>
+
+            <select class="filter-select">
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest First</option>
+                <option>Oldest First</option>
+            </select>
+
+            <select class="filter-select">
+                <option>All Conditions</option>
+                <option>Excellent</option>
+                <option>Very Good</option>
+                <option>Good</option>
+                <option>Fair</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="products"></div>
+
+    <!-- Categories Section -->
+    <div class="categories" id="categories">
+        <h2 class="section-title">Browse by Category</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-archive"></i>
+                </div>
+                <h3 class="category-name">Pettagam</h3>
+                <p class="category-count">24 items</p>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <h3 class="category-name">Chimney</h3>
+                <p class="category-count">18 items</p>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-door-open"></i>
+                </div>
+                <h3 class="category-name">Cupboard</h3>
+                <p class="category-count">15 items</p>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3 class="category-name">Gramophone</h3>
+                <p class="category-count">9 items</p>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <h3 class="category-name">Others</h3>
+                <p class="category-count">32 items</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>CS Antiques</h3>
+            <p>Objects with a past, pieces for your future</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="marketPlace.html">Marketplace</a></li>
+                <li><a href="library.html">Library</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Help & Support</h3>
+            <ul class="footer-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Subscribe to get updates on new arrivals and special offers.</p>
+            <div class="search-bar">
+                <input type="email" placeholder="Your email address">
+                <button class="btn-primary">Subscribe</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>&copy; 2025 CS Antiques. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/marketplace.js"></script>
+</body>
+</html>
