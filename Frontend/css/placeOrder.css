@@ -32,12 +32,6 @@ header {
     z-index: 100;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .logo {
     font-size: 1.8rem;
     font-weight: bold;

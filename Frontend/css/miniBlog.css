@@ -1,0 +1,375 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+}
+
+body {
+    background-color: #f8f3e9;
+    color: #3c2f23;
+    line-height: 1.6;
+    padding: 20px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(139, 109, 81, 0.1)" stroke-width="1"/></svg>');
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo i {
+    margin-right: 0.5rem;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu li {
+    margin-left: 1.5rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    color: var(--primary);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark);
+    margin: 2px 0;
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+hero {
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 2px solid #d4c1a0;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 2.8rem;
+    color: #5c4b37;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #5c4b37;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d4c1a0;
+}
+
+h3 {
+    color: #5c4b37;
+    margin-bottom: 15px;
+}
+
+.tagline {
+    font-style: italic;
+    color: #8b6d51;
+    margin-top: 10px;
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.blog-section {
+    flex: 2;
+    min-width: 300px;
+}
+
+.sidebar {
+    flex: 1;
+    min-width: 250px;
+    background: #f1e8d9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.admin-panel {
+    background: #f9f5ed;
+    padding: 25px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    border: 1px solid #e5d9c2;
+    display: none;
+}
+
+.admin-toggle {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.admin-toggle button {
+    background: #8b6d51;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #5c4b37;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d4c1a0;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 1rem;
+    color: #3c2f23;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button {
+    background: #8b6d51;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #73593e;
+}
+
+.blog-posts {
+    display: grid;
+    gap: 25px;
+}
+
+.post {
+    background: #f9f5ed;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-left: 4px solid #8b6d51;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-title {
+    font-size: 1.4rem;
+    color: #5c4b37;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    color: #8b6d51;
+    font-style: italic;
+}
+
+.post-image {
+    width: 100%;
+    border-radius: 5px;
+    margin: 15px 0;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.post-content {
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.post-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e5d9c2;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    color: #8b6d51;
+    padding: 5px 10px;
+    border: 1px solid #d4c1a0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    background: #f1e8d9;
+    color: #5c4b37;
+}
+
+.action-btn.active {
+    background: #e5d9c2;
+    color: #5c4b37;
+}
+
+.comments-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e5d9c2;
+}
+
+.comment {
+    padding: 15px;
+    background: #fcf9f3;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #5c4b37;
+}
+
+.comment-date {
+    color: #8b6d51;
+    font-style: italic;
+}
+
+.add-comment {
+    margin-top: 20px;
+}
+
+.comment-form {
+    display: flex;
+    gap: 10px;
+}
+
+.comment-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #d4c1a0;
+    border-radius: 4px;
+}
+
+.comment-submit {
+    background: #8b6d51;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sidebar h3 {
+    color: #5c4b37;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #d4c1a0;
+}
+
+.categories {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.categories li {
+    margin-bottom: 8px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.categories li:before {
+    content: "•";
+    color: #8b6d51;
+    position: absolute;
+    left: 0;
+}
+
+.recent-posts {
+    list-style: none;
+}
+
+.recent-posts li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #f9f5ed;
+    border-radius: 4px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 2px solid #d4c1a0;
+    color: #8b6d51;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .post-actions {
+        flex-wrap: wrap;
+    }
+}

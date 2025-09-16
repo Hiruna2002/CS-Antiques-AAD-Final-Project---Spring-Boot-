@@ -1,10 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antiques Collection - Mini Blog</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/miniBlog.css">
 </head>
 <body>
+<div class="container">
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <i class="fas fa-chess-rook"></i> CS Antiques
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="marketPlace.html">Marketplace</a></li>
+        <li><a href="miniBlog.html">Mini Blog</a></li>
+        <li><a href="#">Library</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li class="cart-icon">
+          <a href="addToCart.html"><i class="fas fa-shopping-cart"></i></a>
+          <span class="cart-count">3</span>
+        </li>
+      </ul>
+
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+  <hero>
+    <h1>Antiques Collection</h1>
+    <p class="tagline">Preserving history, one piece at a time</p>
+  </hero>
+
+  <div class="admin-toggle">
+    <button id="toggleAdmin">Admin Panel</button>
+  </div>
+
+  <div class="admin-panel" id="adminPanel">
+    <h2>Admin: Create New Post</h2>
+    <form id="blogForm">
+      <div class="form-group">
+        <label for="postTitle">Post Title</label>
+        <input type="text" id="postTitle" required placeholder="Enter post title">
+      </div>
+      <div class="form-group">
+        <label for="postImage">Image URL</label>
+        <input type="text" id="postImage" placeholder="Paste image URL here">
+      </div>
+      <div class="form-group">
+        <label for="postCategory">Category</label>
+        <select id="postCategory">
+          <option value="Furniture">Furniture</option>
+          <option value="Jewelry">Jewelry</option>
+          <option value="Porcelain">Porcelain & Pottery</option>
+          <option value="Art">Art</option>
+          <option value="Books">Books & Manuscripts</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="postContent">Post Content</label>
+        <textarea id="postContent" required placeholder="Share your antique story..."></textarea>
+      </div>
+      <button type="submit">Publish Post</button>
+    </form>
+  </div>
+
+  <div class="main-content">
+    <section class="blog-section">
+      <h2>Antiques Blog</h2>
+
+      <div class="blog-posts" id="blogPosts">
+        <!-- Sample blog posts will be loaded here -->
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <h3>Blog Categories</h3>
+      <ul class="categories">
+        <li>Furniture Restoration</li>
+        <li>Vintage Jewelry</li>
+        <li>Porcelain & Pottery</li>
+        <li>Art Authentication</li>
+        <li>Antique Hunting</li>
+        <li>Preservation Techniques</li>
+      </ul>
+
+      <h3>Recent Posts</h3>
+      <ul class="recent-posts" id="recentPosts">
+        <!-- Recent posts will be loaded here -->
+      </ul>
+
+      <h3>About This Blog</h3>
+      <p>Share your passion for antiques, restoration stories, collecting tips, and historical discoveries with fellow enthusiasts.</p>
+    </aside>
+  </div>
+
+  <footer>
+    <p>Antiques Collection &copy; 2023 | Preserving History Through Generations</p>
+  </footer>
+</div>
+
+<script src="js/miniBlog.js"></script>
 
 </body>
 </html>
