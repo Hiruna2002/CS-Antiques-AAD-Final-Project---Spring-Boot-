@@ -50,6 +50,8 @@ public class WebSecurityConfig {
                                 "/api/v1/user/login",
                                 "/api/v1/addProduct/saveProduct",
                                 "/api/v1/marketplace/getAll",
+                                "/api/v1/marketplace/${productId}",
+                                "/api/v1/marketplace/**",
                                 "/api/v1/user/**",
                                 "/api/v1/guide/**",
                                 "/api/v1/destination/**",

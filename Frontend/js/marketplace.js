@@ -80,11 +80,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
 
-    $("#products").addEventListener("click", (e) => {
-        if (e.target.classList.contains("view-details")) {
-            const productId = e.target.dataset.id; // get product id
-            // Navigate to itemViewingPage with productId in query params
-            window.location.href = `itemViewingPage.html?id=${productId}`;
-        }
-    });
+    // $("#products").addEventListener("click", (e) => {
+    //     if (e.target.classList.contains("view-details")) {
+    //         const productId = e.target.dataset.id; // get product id
+    //         // Navigate to itemViewingPage with productId in query params
+    //         window.location.href = `itemViewingPage.html?id=${productId}`;
+    //     }
+    // });
+
+$(document).on("click", ".view-details", function() {
+    const productId = $(this).data("id");
+    window.location.href = `itemViewingPage.html?id=${productId}`;
+});
+
 

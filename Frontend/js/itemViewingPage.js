@@ -75,18 +75,118 @@
 });
 
     $.ajax({
-        url:"http://localhost:8080/api/v1/marketplace/${productId}",
+        url:"http://localhost:8080/api/v1/marketplace/"+productId,
         method:"GET",
-        dataType:"jason",
+        dataType:"json",
         success:function (response) {
             console.log(response);
             const products = response.data;
             let html = "";
+            let production;
 
-            products.forEach(product=>{
+            if (!products.timeLine){
+                production = "Reproduction";
+            }else {
+                production = "Original Antiques";
+            }
+
+            if (products.category !=="Pettagam" || products.category !== "pettagam"){
+                $('#dimensions').css("display","none");
+            }else {
+                $('#dimensions').css("display","block");
+            }
+
                 html += `
-                    
-                `
-            })
+                    <!-- Product Images -->
+    <div class="product-images">
+      <span class="product-badge">Featured</span>
+      <div class="main-image">
+        <img src="${products.image || 'https://via.placeholder.com/600x400'}" id="mainImage">
+      </div>
+      <div class="thumbnail-container">
+        <div class="thumbnail active">
+<!--        <div class="thumbnail active" data-image="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'><rect width='600' height='400' fill='%23FFDE21'/><path d='M100,100 L500,100 L500,300 L100,300 Z' stroke='%23FF9500' stroke-width='3' fill='none'/><path d='M100,100 L150,70 L550,70 L500,100' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>">-->
+          <img src="${products.image || 'https://via.placeholder.com/150x100'}" alt="Thumbnail 1">
+        </div>
+        <div class="thumbnail">
+<!--        <div class="thumbnail" data-image="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'><rect width='600' height='400' fill='%23FFDE21'/><path d='M100,100 L500,100 L500,300 L100,300 Z' stroke='%23FF9500' stroke-width='3' fill='none'/><circle cx='300' cy='200' r='50' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>">-->
+          <img src="${products.image || 'https://via.placeholder.com/150x100'}" alt="Thumbnail 2">
+        </div>
+        <div class="thumbnail">
+<!--        <div class="thumbnail" data-image="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'><rect width='600' height='400' fill='%23FFDE21'/><path d='M100,100 L500,100 L500,300 L100,300 Z' stroke='%23FF9500' stroke-width='3' fill='none'/><path d='M150,150 L250,150 L250,250 L150,250 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>">-->
+          <img src="${products.image || 'https://via.placeholder.com/150x100'}" alt="Thumbnail 3">
+        </div>
+        <div class="thumbnail">
+<!--        <div class="thumbnail" data-image="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'><rect width='600' height='400' fill='%23FFDE21'/><path d='M100,100 L500,100 L500,300 L100,300 Z' stroke='%23FF9500' stroke-width='3' fill='none'/><path d='M350,150 L450,150 L450,250 L350,250 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>">-->
+          <img src="${products.image || 'https://via.placeholder.com/150x100'}" alt="Thumbnail 4">
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Details -->
+    <div class="product-details">
+      <h1>${products.productName}</h1>
+      <span class="product-category">${products.category} • ${production}</span>
+
+      <div class="product-rating">
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <span class="rating-count">(12 reviews)</span>
+      </div>
+
+      <div class="product-price">
+<!--        <span class="product-original-price">$499.99</span>-->
+        Rs. ${products.productPrice}
+      </div>
+
+      <p class="product-description">${products.description}</p>
+
+      <div class="product-meta">
+        <div class="meta-item">
+          <i class="fas fa-ruler-combined"></i>
+          <div>
+            <div class="meta-label" id="dimensions">Dimensions</div>
+            <div>36" W × 24" H</div>
+          </div>
+        </div>    
+        <div class="meta-item">
+          <i class="fas fa-warehouse"></i>
+          <div>
+            <div class="meta-label">In Stock</div>
+            <div>${products.stock}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-actions">
+        <div class="quantity-selector">
+          <span class="quantity-label">Quantity:</span>
+          <div class="quantity-controls">
+            <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+            <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="${products.stock}">
+            <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn btn-primary" onclick="addToCart()">
+            <i class="fas fa-shopping-cart"></i> Add to Cart
+          </button>
+          <button class="btn btn-outline">
+            <i class="fas fa-heart"></i> Add to Wishlist
+          </button>
+        </div>
+      </div>
+    </div>
+                `;
+            document.getElementById("itemView").innerHTML = html;
+        },
+        error: function(err) {
+            console.error("Error fetching Item View:", err);
         }
-    })
+    });
