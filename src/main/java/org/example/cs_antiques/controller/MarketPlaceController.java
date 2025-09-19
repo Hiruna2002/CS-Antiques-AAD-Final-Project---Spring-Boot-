@@ -28,6 +28,9 @@ public class MarketPlaceController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ResponseDTO> getProductById(@PathVariable String id) {
+        if (id == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
         ProductDTO productDTO = marketPlaceService.getById(id);
         return ResponseEntity.ok()
                 .body(new ResponseDTO(VarList.OK, "Success", productDTO));

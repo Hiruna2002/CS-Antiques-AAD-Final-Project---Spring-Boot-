@@ -74,6 +74,15 @@
     });
 });
 
+    // Use event delegation because buttons are dynamically created
+    $(document).on("click", "#addToCart", function() {
+        const productId = $(this).data("id");  // get data-id
+        console.log("Clicked ID:", productId);
+
+        // redirect with productId in URL
+        window.location.href = `addToCart.html?id=${productId}`;
+    });
+
     $.ajax({
         url:"http://localhost:8080/api/v1/marketplace/"+productId,
         method:"GET",
@@ -105,19 +114,15 @@
       </div>
       <div class="thumbnail-container">
         <div class="thumbnail active">
-<!--        <div class="thumbnail active" data-image="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'><rect width='600' height='400' fill='%23FFDE21'/><path d='M100,100 L500,100 L500,300 L100,300 Z' stroke='%23FF9500' stroke-width='3' fill='none'/><path d='M100,100 L150,70 L550,70 L500,100' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>">-->
           <img src="${products.image || 'https://via.placeholder.com/150x100'}" alt="Thumbnail 1">
         </div>
         <div class="thumbnail">
-<!--        <div class="thumbnail" data-image="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'><rect width='600' height='400' fill='%23FFDE21'/><path d='M100,100 L500,100 L500,300 L100,300 Z' stroke='%23FF9500' stroke-width='3' fill='none'/><circle cx='300' cy='200' r='50' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>">-->
           <img src="${products.image || 'https://via.placeholder.com/150x100'}" alt="Thumbnail 2">
         </div>
         <div class="thumbnail">
-<!--        <div class="thumbnail" data-image="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'><rect width='600' height='400' fill='%23FFDE21'/><path d='M100,100 L500,100 L500,300 L100,300 Z' stroke='%23FF9500' stroke-width='3' fill='none'/><path d='M150,150 L250,150 L250,250 L150,250 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>">-->
           <img src="${products.image || 'https://via.placeholder.com/150x100'}" alt="Thumbnail 3">
         </div>
         <div class="thumbnail">
-<!--        <div class="thumbnail" data-image="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'><rect width='600' height='400' fill='%23FFDE21'/><path d='M100,100 L500,100 L500,300 L100,300 Z' stroke='%23FF9500' stroke-width='3' fill='none'/><path d='M350,150 L450,150 L450,250 L350,250 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>">-->
           <img src="${products.image || 'https://via.placeholder.com/150x100'}" alt="Thumbnail 4">
         </div>
       </div>
@@ -174,7 +179,7 @@
         </div>
 
         <div class="action-buttons">
-          <button class="btn btn-primary" onclick="addToCart()">
+          <button class="btn btn-primary" onclick="addToCart()" data-id="${products.id}" id="addToCart">
             <i class="fas fa-shopping-cart"></i> Add to Cart
           </button>
           <button class="btn btn-outline">
