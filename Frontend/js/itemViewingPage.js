@@ -2,6 +2,8 @@
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
 
+    let qty = 0;
+
     const params = new URLSearchParams(window.location.search);
     const productId = params.get("id");
 
@@ -52,7 +54,7 @@
     cartCount.textContent = count;
 
     // Show confirmation
-    alert(`Added ${quantity} ${productName} to your cart!`);
+        alert(`Added ${quantity} ${productName} to your cart!`);
 }
 
     // Tab functionality
@@ -80,7 +82,49 @@
         console.log("Clicked ID:", productId);
 
         // redirect with productId in URL
-        window.location.href = `addToCart.html?id=${productId}`;
+        // window.location.href = `addToCart.html?id=${productId}`;
+
+        $.ajax({
+            url:"http://localhost:8080/api/v1/marketplace/"+productId,
+            method: "GET",
+            dataType: "json",
+            success: function(response) {
+                console.log("Product details:", response);
+                let html = "";
+                const product = response.data;
+
+                const user = {
+                    image : product.image,
+                    productId : product.id,
+                    productName : product.productName,
+                    category : product.category,
+                    description : product.description,
+                    price : product.productPrice,
+                    stock : product.stock,
+                    cusId : localStorage.getItem("csLoginEmail"),
+                    qty : 1,
+                };
+                $.ajax({
+                    url: "http://localhost:8080/api/v1/addToCart/saveItem",
+                    method:"POST",
+                    contentType:"application/json",
+                    data: JSON.stringify(user),
+                    success: () => {
+                        alert("Cart added successfully");
+                    },
+                    error: (xhr, status, error) => {
+                        console.log("Error:", status, error);
+                        console.log(xhr.responseText);
+                    }
+                });
+
+
+            },
+            error: (xhr, status, error) => {
+                console.log("Error fetching product:", status, error);
+            }
+
+        });
     });
 
     $.ajax({

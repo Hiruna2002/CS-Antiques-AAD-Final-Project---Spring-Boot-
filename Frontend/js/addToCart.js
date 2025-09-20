@@ -2,60 +2,39 @@ document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
     const productId = params.get("id");
 
+    const qtyInputs = document.querySelectorAll('.quantity');
+
     console.log("Fetched product ID:", productId);
 
-    if (!productId) {
-        console.error("Product ID is missing in the URL!");
-        alert("No product selected.");
-        return; // Stop execution
-    }
-
-    // Example: make an API call for product details
     $.ajax({
-        url:"http://localhost:8080/api/v1/marketplace/"+productId,
-        method: "GET",
+        url:"http://localhost:8080/api/v1/addToCart/getAll",
+        method:"GET",
         dataType: "json",
-        success: function(response) {
-            console.log("Product details:", response);
+        success:function (response) {
+            const products = response.data;
             let html = "";
-            const product = response.data;
+            let totalPrice = 0;
+            let shipping = 0;
+            let total = 0;
 
-            const user = {
-                id : product.id,
-                name : product.productName,
-                category : product.category,
-                desc : product.description,
-                price : product.category,
-                stock : product.stock
-            };
-            $.ajax({
-                url: "http://localhost:8080/api/v1/addToCart/saveItem",
-                method:"Get",
-                contentType:"application/json",
-                data: JSON.stringify(user),
-                success: () => {
-                    alert("Cart added successfully");
-                }
-            });
+            products.forEach(product=>{
+                totalPrice+=product.price
 
-
-
-
-               html += `
+                html += `
                 <div class="cart-item">
             <div class="item-image">
-                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect width='120' height='120' fill='%23FFDE21'/><path d='M30,30 L90,30 L90,90 L30,90 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>" alt="Vintage Pettagam Chest">
+                <img src="${product.image || 'https://via.placeholder.com/120x120'}" alt="${product.productName}">
             </div>
             <div class="item-details">
                 <h3 class="item-name">${product.productName}</h3>
-                <div class="item-category">${product.category}</div>
-                <p class="item-description">${product.description}</p>
-                <div class="item-price">Rs. ${product.productPrice}</div>
+                <div class="item-category">${product.category || ""}</div>
+                <p class="item-description">${product.description || ""}</p>
+                <div class="item-price">Rs. ${product.price}</div>
             </div>
             <div class="item-controls">
                 <div class="quantity-controls">
                     <button class="quantity-btn" onclick="updateQuantity(this, -1)">-</button>
-                    <input type="number" class="quantity-input" value="1" min="1" onchange="updateItemTotal(this)">
+                    <input type="number" id="qty${product.productId}" class="quantity quantity-input" value="1" min="1" onchange="updateItemTotal(this)">
                     <button class="quantity-btn" onclick="updateQuantity(this, 1)">+</button>
                 </div>
                 <button class="remove-item" onclick="removeItem(this)">
@@ -64,12 +43,29 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
         </div>
                `;
+            });
+
 
             document.getElementById("addToCartPage").innerHTML = html;
-        }
 
+            let subTotal = parseInt(totalPrice, 10);
+            $('#subtotal').text("Rs." + parseInt(subTotal, 10));
+
+            total = totalPrice + shipping;
+            $('#total').text("Rs." + parseInt(total, 10));
+
+            const value = $('#shippingPrice').val();
+
+            if (!value){
+                $('#shippingPrice').text("Free");
+            }
+        }
     });
 });
+
+$('#checkout').on('click', function () {
+
+})
 
 
 // Mobile menu toggle
@@ -119,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // For this demo, we'll use fixed values
     const subtotal = 1129.97; // This would be calculated from items
     const shipping = 49.99;
-    const tax = 90.40;
+
     const total = subtotal + shipping + tax;
 
     document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;

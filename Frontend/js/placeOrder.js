@@ -1,4 +1,31 @@
-    // Mobile menu toggle
+document.addEventListener("DOMContentLoaded", function() {
+    $.ajax({
+        url:"http://localhost:8080/api/v1/addToCart/getAll",
+        method:"GET",
+        dataType:"json",
+        success:function (response){
+            const items = response.data;
+            let html = "";
+
+            items.forEach(item=>{
+                html += `
+                    <div class="cart-item">
+                <div class="item-image">
+                    <img src="${item.image || 'https://via.placeholder.com/80x80'}" alt="${item.productName}">
+                </div>
+                <div class="item-details">
+                    <div class="item-name">${item.productName}</div>
+                    <div class="item-quantity">${item.qty}</div>
+                    <div class="item-price">${item.productPrice}</div>
+                </div>
+                `;
+            });
+        }
+
+    });
+});
+
+// Mobile menu toggle
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
 
@@ -79,15 +106,15 @@
 
     // Place order function
     function placeOrder() {
-    if (validateForm()) {
-    // In a real application, this would submit the order to a server
-    // For this demo, we'll show a success message
-    alert('Your order has been placed successfully! Thank you for shopping with CS Antiques.');
+        if (validateForm()) {
+        // In a real application, this would submit the order to a server
+        // For this demo, we'll show a success message
+        alert('Your order has been placed successfully! Thank you for shopping with CS Antiques.');
 
-    // Redirect to order confirmation page
-    window.location.href = 'order-confirmation.html';
-}
-}
+        // Redirect to order confirmation page
+        window.location.href = 'order-confirmation.html';
+        }
+    }
 
     // Initialize payment details
     document.getElementById('cardDetails').classList.add('active');

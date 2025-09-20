@@ -32,9 +32,13 @@
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(user),
-            success: () => {
+            success: function (response){
+                localStorage.setItem("csLoginEmail", user.email);
+                console.log("User Login Detail is : ", user);
+                console.log("User Email is : ", user.email);
+
                 alert("Login Successfully")
-                window.location.href = "../../Frontend/index.html";
+                // window.location.href = "../../Frontend/index.html";
             },
             error: () => alert("Login Unsuccessfully!")
         });
