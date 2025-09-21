@@ -48,6 +48,8 @@ public class WebSecurityConfig {
                                 "/api/v1/admin/**",
                                 "/api/v1/user/register",
                                 "/api/v1/user/login",
+                                "/api/v1/user/getUserByEmail",
+                                "/api/v1/user/getUserByEmail/**",
                                 "/api/v1/addProduct/saveProduct",
                                 "/api/v1/marketplace/getAll",
                                 "/api/v1/marketplace/${productId}",
