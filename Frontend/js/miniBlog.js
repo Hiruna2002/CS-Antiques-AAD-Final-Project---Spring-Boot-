@@ -223,7 +223,10 @@
     blogForm.reset();
 
     // Show success message
-    alert('Post published successfully!');
+        Swal.fire({
+            title: "Post published successfully!",
+            icon: "success",
+        })
 });
 
     // Initialize the blog

@@ -97,7 +97,11 @@ $(document).on("click", ".category-card", function() {
                     const productName = button.closest('.product-card').querySelector('.product-name').textContent;
 
                     // Show added message
-                    alert(`${productName} has been added to your cart!`);
+                    // alert(`${productName} has been added to your cart!`);
+                    Swal.fire({
+                        title: `"${productName}" has been added to your cart!`,
+                        icon: "success",
+                    })
                 });
             });
 
@@ -110,7 +114,11 @@ $(document).on("click", ".category-card", function() {
                     const productName = button.closest('.product-card').querySelector('.product-name').textContent;
 
                     // In a real application, this would navigate to a product detail page
-                    alert(`Viewing details for: ${productName}`);
+                    // alert(`Viewing details for: ${productName}`);
+                    Swal.fire({
+                        title: `Viewing details for: "${productName}"`,
+                        icon: "success",
+                    })
                 });
             });
 

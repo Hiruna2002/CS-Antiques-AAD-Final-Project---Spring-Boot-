@@ -209,6 +209,10 @@ header {
 /* Values Section */
 .values {
     margin-bottom: 5rem;
+
+    padding: 60px 20px;
+    background: #fafafa;
+    text-align: center;
 }
 
 .values-grid {
@@ -271,7 +275,7 @@ header {
 }
 
 .member-image {
-    height: 250px;
+    height: 400px;
     overflow: hidden;
 }
 
@@ -330,12 +334,19 @@ header {
     margin-bottom: 5rem;
 }
 
+.map-section a {
+    text-decoration: none;
+}
+
 .map-container {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: var(--shadow);
     height: 400px;
     background: var(--secondary);
+    background-image: url("../../src/main/resources/assest/Google Map.PNG");
+    background-color: rgba(0,0,0,0.5); /* black overlay */
+    background-blend-mode: darken;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -357,7 +368,8 @@ header {
 
 .map-placeholder {
     text-align: center;
-    color: var(--dark);
+    color: white;
+    text-decoration: white;
 }
 
 .map-placeholder i {

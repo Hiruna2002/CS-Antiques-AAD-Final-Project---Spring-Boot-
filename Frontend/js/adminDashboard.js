@@ -271,7 +271,12 @@ let count = 0;
     // Determine which marketplace to save to
     const marketplaceName = marketplace === 'original' ? 'Original Antiques' : 'Antiques Reproduction';
 
-    alert(`Product "${name}" has been added to ${marketplaceName}!`);
+    // alert(`Product "${name}" has been added to ${marketplaceName}!`);
+
+        Swal.fire({
+            title: `Product "${name}" has been added to ${marketplaceName}!`,
+            icon: "success",
+        })
 
     // Reset form
     this.reset();
@@ -284,7 +289,13 @@ let count = 0;
     updateCategories('original');
     updateMarketplaceBadge('original');
 } else {
-    alert('Please fill all required fields');
+        Swal.fire({
+            title: 'Error!',
+            text: 'Please fill all required fields',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+        })
+    // alert('Please fill all required fields');
 }
 });
 
@@ -489,9 +500,18 @@ function loadProductIds(length){
             contentType:"application/json",
             data:JSON.stringify(product),
             success:() => {
-                alert("Product add Successfully")
+                Swal.fire({
+                    title: "Product add Successfully",
+                    icon: "success",
+                })
+                // alert("Product add Successfully")
             },
-            error: () => alert("Error saving Product!")
+            error: () => Swal.fire({
+                title: 'Error!',
+                text: 'Error Saving Products',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
         });
     });
 
@@ -522,7 +542,10 @@ function loadEmployeeIds(count){
            contentType: 'application/json',
            data: JSON.stringify(employee),
            success: () => {
-               alert("Saved Successfully");
+               Swal.fire({
+                   title: "Saved Successfully!",
+                   icon: "success",
+               })
                $('.page-title').css("display","none");
                $('.stats-cards').css("display","none");
                $('.dashboard-row').css("display","none");
@@ -534,7 +557,12 @@ function loadEmployeeIds(count){
                $("#addEmployeeForm").css("display","none");
 
            },
-           error: () => alert("Error saving Employee!")
+           error: () => Swal.fire({
+               title: 'Error!',
+               text: 'Employee not save',
+               icon: 'error',
+               confirmButtonText: 'Ok'
+           })
        });
     });
 

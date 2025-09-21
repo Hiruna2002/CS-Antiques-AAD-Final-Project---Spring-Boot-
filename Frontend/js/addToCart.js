@@ -63,9 +63,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// $('#checkout').on('click', function () {
-//
-// })
+$('#checkout').on('click', function () {
+    window.location.href = "../../Frontend/placeOrder.html";
+
+})
 
 
 // Mobile menu toggle

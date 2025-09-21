@@ -80,14 +80,26 @@ document.addEventListener("DOMContentLoaded", function() {
         const address = document.getElementById('address').value;
 
         if (!firstName || !lastName || !email || !address) {
-            alert('Please fill in all required fields');
+            // alert('Please fill in all required fields');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please fill in all required fields',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
             return false;
         }
 
         // Validate email format
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
+            // alert('Please enter a valid email address');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please enter a valid email address',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
             return false;
         }
 
@@ -98,18 +110,36 @@ document.addEventListener("DOMContentLoaded", function() {
             const cvv = document.getElementById('cvv').value;
 
             if (!cardNumber || !expiryDate || !cvv) {
-                alert('Please fill in all card details');
+                // alert('Please fill in all card details');
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Please fill in all card details',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
                 return false;
              }
 
             // Simple card validation
             if (cardNumber.replace(/\s/g, '').length !== 16) {
-                alert('Please enter a valid card number');
+                // alert('Please enter a valid card number');
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Please enter a valid card number',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
                 return false;
             }
 
             if (cvv.length !== 3) {
-                alert('Please enter a valid CVV');
+                // alert('Please enter a valid CVV');
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Please enter a valid CVV',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
                 return false;
             }
         }
@@ -122,10 +152,13 @@ document.addEventListener("DOMContentLoaded", function() {
         if (validateForm()) {
         // In a real application, this would submit the order to a server
         // For this demo, we'll show a success message
-        alert('Your order has been placed successfully! Thank you for shopping with CS Antiques.');
-
+        // alert('Your order has been placed successfully! Thank you for shopping with CS Antiques.');
+            Swal.fire({
+                title: "Your order has been placed successfully! Thank you for shopping with CS Antiques.",
+                icon: "success",
+            })
         // Redirect to order confirmation page
-        // window.location.href = 'order-confirmation.html';
+
         }
     }
 
@@ -165,7 +198,11 @@ document.addEventListener("DOMContentLoaded", function() {
             contentType:"application/json",
             data: JSON.stringify(order),
             success: () => {
-                alert("Order Place successfully");
+                // alert("Order Place successfully");
+                Swal.fire({
+                    title: "Order Place successfully",
+                    icon: "success",
+                })
             },
             error: (xhr, status, error) => {
                 console.log("Error:", status, error);

@@ -54,7 +54,11 @@
     cartCount.textContent = count;
 
     // Show confirmation
-        alert(`Added ${quantity} ${productName} to your cart!`);
+    //     alert(`Added ${quantity} ${productName} to your cart!`);
+        Swal.fire({
+            title: `Added "${quantity} ${productName}" to your cart!`,
+            icon: "success",
+        })
 }
 
     // Tab functionality
@@ -110,7 +114,10 @@
                     contentType:"application/json",
                     data: JSON.stringify(user),
                     success: () => {
-                        alert("Cart added successfully");
+                        Swal.fire({
+                            title: "Add to Cart Successfully!",
+                            icon: "success",
+                        })
                     },
                     error: (xhr, status, error) => {
                         console.log("Error:", status, error);

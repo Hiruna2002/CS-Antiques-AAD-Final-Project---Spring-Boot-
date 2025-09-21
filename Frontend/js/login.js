@@ -33,15 +33,25 @@
             contentType: 'application/json',
             data: JSON.stringify(user),
             success:()=>{
+                Swal.fire({
+                    title: "Login Successfully!",
+                    icon: "success",
+                })
                 // checkRole(user.email);
                 localStorage.setItem("csLoginEmail", user.email);
                 console.log("User Login Detail is : ", user);
                 console.log("User Email is : ", user.email);
 
-                alert("Login Successfully")
                 // window.location.href = "../../Frontend/index.html";
+
             },
-            error: () => alert("Login Unsuccessfully!")
+            error: () =>
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'User Name Or Password are incorrect',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
         });
     });
 

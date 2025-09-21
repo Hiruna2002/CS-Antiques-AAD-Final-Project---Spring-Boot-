@@ -57,7 +57,10 @@
 
     // In a real application, this would save to a server
     // For this demo, we'll just show a success message
-    alert('Profile updated successfully!');
+        Swal.fire({
+            title: "Profile Update Successfully!",
+            icon: "success",
+        })
 
     // Update original values
     formInputs.forEach(input => {

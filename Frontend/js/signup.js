@@ -34,12 +34,22 @@ signupForm.addEventListener('submit', (e) => {
     const terms = document.getElementById('terms').checked;
 
     if (!name || !address || !number || !email || !password || !terms) {
-        alert('Please fill all required fields');
+        // alert('Please fill all required fields');
+        Swal.fire({
+            title: 'Error!',
+            text: 'Please fill all required fields',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+        })
         return;
     }
 
     // Simulate successful signup
-    alert('Account created successfully! Redirecting to login...');
+    // alert('Account created successfully! Redirecting to login...');
+    Swal.fire({
+        title: "Account created successfully! Redirecting to login...",
+        icon: "success",
+    })
     window.location.href = 'login.html';
 });
 
@@ -65,9 +75,18 @@ $('#signup').click(() => {
         contentType: 'application/json',
         data: JSON.stringify(user),
         success: () => {
-            alert("Saved Successfully")
+            // alert("Saved Successfully")
+            Swal.fire({
+                title: "Saved Successfully!",
+                icon: "success",
+            })
             window.location.href = "../../Frontend/login.html";
         },
-        error: () => alert("Error saving User!")
+        error: () => Swal.fire({
+            title: 'Error!',
+            text: 'User not Save',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+        })
     });
 });
