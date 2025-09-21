@@ -16,6 +16,6 @@ public class CartDTO {
     private String description;
     private String price;
     private String stock;
-    private int qty;
+    private String qty;
 
 }

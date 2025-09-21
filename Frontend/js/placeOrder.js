@@ -1,3 +1,4 @@
+let subTotal = 0;
 document.addEventListener("DOMContentLoaded", function() {
     $.ajax({
         url:"http://localhost:8080/api/v1/addToCart/getAll",
@@ -5,21 +6,33 @@ document.addEventListener("DOMContentLoaded", function() {
         dataType:"json",
         success:function (response){
             const items = response.data;
+            console.log("Items is :", items);
             let html = "";
 
             items.forEach(item=>{
+                let price = parseFloat(item.price) || 0;  // ensure number
+                let qty = parseInt(item.qty) || 1;        // default to 1 if null
+                let lineTotal = price * qty;              // total for this item
+
+                subTotal += lineTotal;
+
                 html += `
                     <div class="cart-item">
-                <div class="item-image">
-                    <img src="${item.image || 'https://via.placeholder.com/80x80'}" alt="${item.productName}">
-                </div>
-                <div class="item-details">
-                    <div class="item-name">${item.productName}</div>
-                    <div class="item-quantity">${item.qty}</div>
-                    <div class="item-price">${item.productPrice}</div>
-                </div>
+                        <div class="item-image">
+                            <img src="${item.image || 'https://via.placeholder.com/80x80'}" alt="${item.productName}">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">${item.productName}</div>
+                            <div class="item-quantity">${item.qty}</div>
+                            <div class="item-price">${item.price}</div>
+                        </div>
+                    </div>
                 `;
             });
+            document.getElementById("placeOrderItems").innerHTML = html;
+
+            $('#subTotal').text("Rs. " + subTotal.toLocaleString());
+            $('#totalAmount').text("Rs. " + subTotal.toLocaleString());
         }
 
     });
@@ -61,45 +74,45 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Form validation
     function validateForm() {
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = document.getElementById('email').value;
-    const address = document.getElementById('address').value;
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const address = document.getElementById('address').value;
 
-    if (!firstName || !lastName || !email || !address) {
-    alert('Please fill in all required fields');
-    return false;
-}
+        if (!firstName || !lastName || !email || !address) {
+            alert('Please fill in all required fields');
+            return false;
+        }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-    alert('Please enter a valid email address');
-    return false;
-}
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return false;
+        }
 
-    // Validate card details if card payment is selected
-    if (document.getElementById('cardPayment').checked) {
-    const cardNumber = document.getElementById('cardNumber').value;
-    const expiryDate = document.getElementById('expiryDate').value;
-    const cvv = document.getElementById('cvv').value;
+        // Validate card details if card payment is selected
+        if (document.getElementById('cardPayment').checked) {
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+            const cvv = document.getElementById('cvv').value;
 
-    if (!cardNumber || !expiryDate || !cvv) {
-    alert('Please fill in all card details');
-    return false;
-}
+            if (!cardNumber || !expiryDate || !cvv) {
+                alert('Please fill in all card details');
+                return false;
+             }
 
-    // Simple card validation
-    if (cardNumber.replace(/\s/g, '').length !== 16) {
-    alert('Please enter a valid card number');
-    return false;
-}
+            // Simple card validation
+            if (cardNumber.replace(/\s/g, '').length !== 16) {
+                alert('Please enter a valid card number');
+                return false;
+            }
 
-    if (cvv.length !== 3) {
-    alert('Please enter a valid CVV');
-    return false;
-}
-}
+            if (cvv.length !== 3) {
+                alert('Please enter a valid CVV');
+                return false;
+            }
+        }
 
     return true;
 }
@@ -112,9 +125,52 @@ document.addEventListener("DOMContentLoaded", function() {
         alert('Your order has been placed successfully! Thank you for shopping with CS Antiques.');
 
         // Redirect to order confirmation page
-        window.location.href = 'order-confirmation.html';
+        // window.location.href = 'order-confirmation.html';
         }
     }
 
     // Initialize payment details
     document.getElementById('cardDetails').classList.add('active');
+
+    $('#placeOrder').on('click',function () {
+        console.log(subTotal)
+        let payMethod = "";
+        if($('#cardPayment').is(':checked')){
+            payMethod = "Card Payment";
+        }else{
+            payMethod = "Cash On Delivery";
+        }
+            let order = {
+                cusId : localStorage.getItem("csLoginEmail"),
+                firstName : $('#firstName').val(),
+                lastName : $('#lastName').val(),
+                email : $('#email').val(),
+                phone : $('#phone').val(),
+                address : $('#address').val(),
+                city : $('#city').val(),
+                zipCode : $('#zipCode').val(),
+                country : "Sri Lanka",
+                totalPrice :"Rs."+ subTotal,
+                saveAddress : $('#saveAddress').val(),
+                payMethod : payMethod,
+                cardNumber : $('#cardNumber').val(),
+                expDate : $('#expiryDate').val(),
+                cvv : $('#cvv').val(),
+                cardName : $('#cardName').val()
+        };
+        console.log(order);
+        $.ajax({
+           url: "http://localhost:8080/api/v1/placeOrder/saveOrder",
+           method: "POST",
+            contentType:"application/json",
+            data: JSON.stringify(order),
+            success: () => {
+                alert("Order Place successfully");
+            },
+            error: (xhr, status, error) => {
+                console.log("Error:", status, error);
+                console.log(xhr.responseText);
+            }
+        });
+
+    });

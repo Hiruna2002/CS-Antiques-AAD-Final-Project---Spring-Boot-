@@ -80,7 +80,7 @@
 
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" placeholder="+077 123 4567" required>
+                    <input type="tel" id="phone" placeholder="077 123 4567" required>
                 </div>
 
                 <div class="form-group">
@@ -172,7 +172,7 @@
     <div class="order-summary">
         <h2 class="summary-title">Order Summary</h2>
 
-        <div class="cart-items">
+        <div class="cart-items" id="placeOrderItems">
 <!--            <div class="cart-item">-->
 <!--                <div class="item-image">-->
 <!--                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><rect width='80' height='80' fill='%23FFDE21'/><path d='M20,20 L60,20 L60,60 L20,60 Z' stroke='%23FF9500' stroke-width='2' fill='none'/></svg>" alt="Vintage Pettagam Chest">-->
@@ -209,20 +209,20 @@
 
         <div class="summary-row">
             <span class="summary-label">Subtotal</span>
-            <span class="summary-value">$1,129.96</span>
+            <span class="summary-value" id="subTotal">0</span>
         </div>
 
         <div class="summary-row">
             <span class="summary-label">Shipping</span>
-            <span class="summary-value">Free</span>
+            <span class="summary-value" id="shipping">Free</span>
         </div>
 
         <div class="summary-total">
             <span>Total</span>
-            <span id="totalAmount">$1,270.35</span>
+            <span id="totalAmount">0</span>
         </div>
 
-        <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+        <button class="place-order-btn" onclick="placeOrder()" id="placeOrder">Place Order</button>
 
         <div class="secure-checkout">
             <i class="fas fa-lock"></i>
@@ -279,6 +279,7 @@
     </div>
 </footer>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="js/placeOrder.js"></script>
 
 </body>

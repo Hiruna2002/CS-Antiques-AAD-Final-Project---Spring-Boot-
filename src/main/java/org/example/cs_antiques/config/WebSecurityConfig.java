@@ -53,17 +53,11 @@ public class WebSecurityConfig {
                                 "/api/v1/marketplace/${productId}",
                                 "/api/v1/addToCart/saveItem",
                                 "/api/v1/addToCart/getAll",
+                                "/api/v1/placeOrder/saveOrder",
                                 "/api/v1/marketplace/**",
                                 "/api/v1/user/**",
-                                "/api/v1/guide/**",
-                                "/api/v1/destination/**",
-                                "/api/v1/vehicle/**",
-                                "/api/v1/package/**",
-                                "/api/v1/booking/**",
                                 "/api/v1/dashboard/**",
-                                "/api/v1/payment/**",
                                 "/api/v1/auth/refreshToken",
-                                "/v3/api-docs/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html").permitAll()
                         .anyRequest().authenticated()

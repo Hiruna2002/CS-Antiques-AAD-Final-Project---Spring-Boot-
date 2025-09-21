@@ -63,9 +63,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-$('#checkout').on('click', function () {
-
-})
+// $('#checkout').on('click', function () {
+//
+// })
 
 
 // Mobile menu toggle
@@ -88,9 +88,33 @@ $('#checkout').on('click', function () {
     updateItemTotal(quantityInput);
 }
 
-    function updateItemTotal(input) {
+    function updateItemTotal(inputElement) {
     // In a real application, this would calculate based on actual prices
     // For this demo, we'll just recalculate the total
+    //     let inputId = inputElement.id;// e.g. "qty123"
+    //     let productId = inputId.replace("qty", "");
+    //     let qty = inputElement.value;   // e.g. 2
+    //
+    //     $.ajax({
+    //         url: "http://localhost:8080/api/v1/addToCart/"+productId,
+    //         method: "GET",
+    //         dataType: "json",
+    //         success:function (response) {
+    //             const product = response.data;
+    //             let quantity = {
+    //                 qty : product.productId
+    //             }
+    //
+    //             $.ajax({
+    //                url:"http://localhost:8080/api/v1/addToCart/saveQty"
+    //                 method
+    //             });
+    //         }
+    //     });
+    //
+    //     console.log("Input ID:", productId);
+    //     console.log("Quantity:", qty);
+
     calculateTotals();
 }
 
@@ -116,7 +140,7 @@ $('#checkout').on('click', function () {
     const subtotal = 1129.97; // This would be calculated from items
     const shipping = 49.99;
 
-    const total = subtotal + shipping + tax;
+    const total = subtotal + shipping;
 
     document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
     document.getElementById('total').textContent = `$${total.toFixed(2)}`;

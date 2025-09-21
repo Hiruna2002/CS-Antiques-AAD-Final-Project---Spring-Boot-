@@ -13,4 +13,6 @@ public interface AddToCartService {
     int addItemToCart(CartDTO cartDTO, String cusId);
 
     List<CartDTO> getAllProduct();
+
+//    CartDTO getById(String id);
 }
