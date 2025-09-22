@@ -22,38 +22,45 @@
 
     });
 
-    $('#login').click(()=>{
+    $("#login").on('click', function () {
         const user = {
-            email : $('#email').val(),
-            password : $('#password').val()
+            email: $("#email").val(),
+            password: $("#password").val()
         };
+
         $.ajax({
             url: "http://localhost:8080/api/v1/user/login",
             method: 'POST',
-            contentType: 'application/json',
+            contentType: "application/json",
             data: JSON.stringify(user),
-            success:()=>{
+            dataType: 'json',
+            success: function (response) {
+                localStorage.setItem("csLoginEmail", user.email);
+                const page = response.data;
+
                 Swal.fire({
                     title: "Login Successfully!",
                     icon: "success",
-                })
-                // checkRole(user.email);
-                localStorage.setItem("csLoginEmail", user.email);
-                console.log("User Login Detail is : ", user);
-                console.log("User Email is : ", user.email);
+                });
 
-                // window.location.href = "../../Frontend/index.html";
-
+                if (page.role.toLowerCase() === "user") {
+                    window.location.href = "../../Frontend/index.html";
+                } else if (page.role.toLowerCase() === "employee") {
+                    window.location.href = "../../Frontend/adminDashboard.html";
+                } else {
+                    window.location.href = "../../Frontend/adminDashboard.html";
+                }
             },
-            error: () =>
+            error: function (xhr) {
                 Swal.fire({
-                    title: 'Error!',
-                    text: 'User Name Or Password are incorrect',
-                    icon: 'error',
-                    confirmButtonText: 'Ok'
-                })
+                    title: "Login Failed",
+                    text: xhr.responseJSON?.message || "Something went wrong",
+                    icon: "error"
+                });
+            }
         });
     });
+
 
     // function checkRole(email){
     //     const encodedEmail = encodeURIComponent(email);

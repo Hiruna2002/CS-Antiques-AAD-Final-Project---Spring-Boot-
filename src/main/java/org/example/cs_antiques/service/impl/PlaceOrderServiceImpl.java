@@ -1,5 +1,6 @@
 package org.example.cs_antiques.service.impl;
 
+import org.example.cs_antiques.dto.CartDTO;
 import org.example.cs_antiques.dto.OrderDTO;
 import org.example.cs_antiques.entity.Order;
 import org.example.cs_antiques.entity.User;
@@ -11,6 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PlaceOrderServiceImpl implements PlaceOrderService {
@@ -54,6 +58,14 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
             return VarList.Created;
         }
     return VarList.Not_Found;
+    }
+
+    @Override
+    public List<OrderDTO> getAllOrders() {
+        return placeOrderRepo.findAll()
+                .stream()
+                .map(order -> modelMapper.map(order, OrderDTO.class))
+                .collect(Collectors.toList());
     }
 }
 

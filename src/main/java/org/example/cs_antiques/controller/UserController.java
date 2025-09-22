@@ -78,24 +78,22 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<ResponseDTO> login(@RequestBody UserDTO userDTO) {
         UserDTO user = userService.getUserByEmail(userDTO.getEmail());
-            if (user != null) {
-                if (user.getEmail().equals(userDTO.getEmail())
-                        && passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
-
-                    // Generate JWT token here if needed
-                    return ResponseEntity.ok(
-                            new ResponseDTO(VarList.Created, "Login Success", user)
-                    );
-                } else {
-                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                            .body(new ResponseDTO(VarList.Not_Acceptable, "Email or Password incorrect", null));
-                }
-
-            }else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(new ResponseDTO(VarList.Not_Acceptable, "User not found", null));
+        if (user != null) {
+            if (user.getEmail().equals(userDTO.getEmail())
+                    && passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
+                return ResponseEntity.ok(
+                        new ResponseDTO(VarList.Created, "Login Success", user)
+                );
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(new ResponseDTO(VarList.Not_Acceptable, "Email or Password incorrect", null));
             }
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ResponseDTO(VarList.Not_Acceptable, "User not found", null));
         }
+    }
+
 
 
 

@@ -56,6 +56,7 @@ public class WebSecurityConfig {
                                 "/api/v1/addToCart/saveItem",
                                 "/api/v1/addToCart/getAll",
                                 "/api/v1/placeOrder/saveOrder",
+                                "/api/v1/placeOrder/getAll",
                                 "/api/v1/marketplace/**",
                                 "/api/v1/user/**",
                                 "/api/v1/dashboard/**",

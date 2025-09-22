@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
     const productId = params.get("id");
 
-    const qtyInputs = document.querySelectorAll('.quantity');
+    // const qtyInputs = document.querySelectorAll('.quantity');
 
     console.log("Fetched product ID:", productId);
 
@@ -14,11 +14,15 @@ document.addEventListener("DOMContentLoaded", function() {
             const products = response.data;
             let html = "";
             let totalPrice = 0;
-            let shipping = 0;
-            let total = 0;
+            let price = 0;
 
             products.forEach(product=>{
-                totalPrice+=product.price
+                price = parseFloat(product.price) || 0;  // ensure number
+                let qty = parseInt(product.qty) || 1;        // default to 1 if null
+                let lineTotal = price * qty;              // total for this item
+
+                totalPrice += lineTotal;
+
 
                 html += `
                 <div class="cart-item">
@@ -47,18 +51,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
             document.getElementById("addToCartPage").innerHTML = html;
+            $('#subTotal').text(totalPrice);
+            $('#total').text(totalPrice);
 
-            let subTotal = parseInt(totalPrice, 10);
-            $('#subtotal').text("Rs." + parseInt(subTotal, 10));
-
-            total = totalPrice + shipping;
-            $('#total').text("Rs." + parseInt(total, 10));
-
-            const value = $('#shippingPrice').val();
-
-            if (!value){
-                $('#shippingPrice').text("Free");
-            }
+            // let subTotal = parseInt(totalPrice, 10);
+            // $('#subtotal').text("Rs." + parseInt(subTotal, 10));
+            //
+            // total = totalPrice + shipping;
+            // $('#total').text("Rs." + parseInt(total, 10));
+            //
+            // const value = $('#shippingPrice').val();
+            //
+            // if (!value){
+            //     $('#shippingPrice').text("Free");
+            // }
         }
     });
 });

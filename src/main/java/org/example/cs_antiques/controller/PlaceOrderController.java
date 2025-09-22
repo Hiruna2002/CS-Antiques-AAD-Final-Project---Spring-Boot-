@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:63342")
 @RestController
 @RequestMapping("api/v1/placeOrder")
@@ -48,5 +50,12 @@ public class PlaceOrderController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
         }
+    }
+
+    @GetMapping(value = "/getAll")
+    public ResponseEntity<ResponseDTO>getOrders(){
+        List<OrderDTO> orderDTOS = placeOrderService.getAllOrders();
+        return ResponseEntity.ok()
+                .body(new ResponseDTO(VarList.OK, "Success", orderDTOS));
     }
 }

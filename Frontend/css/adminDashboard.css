@@ -721,6 +721,15 @@ tr:hover {
     font-size: 1rem;
 }
 
+.action-btn-orders {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+}
+
 /*Add Employee*/
 .main-content {
     display: flex;

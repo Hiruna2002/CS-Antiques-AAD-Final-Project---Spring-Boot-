@@ -1,5 +1,6 @@
 let length = 0;
 let count = 0;
+let adminCount = 0;
 
 // Initialize sales chart
     document.addEventListener('DOMContentLoaded', function() {
@@ -121,25 +122,63 @@ let count = 0;
             dataType:"json",
             success:function(response){
                 const employee = response.data || [];
-                count = employee.length
+                // count = employee.length
 
                 const employee_data = response.data;
                 let data = "";
 
                 employee_data.forEach(employeeData=>{
-                    if (employeeData.role === "employee" || employeeData.role === "Employee" || employeeData.role === "EMPLOYEE"){
-                        data += `<tr>
-                            <td>${employeeData.id}</td>
-                            <td>${employeeData.name}</td>
-                            <td>${employeeData.address}</td>
-                            <td>${employeeData.number}</td>
-                            <td>${employeeData.email}</td> 
-                        </tr>`;
+                    if (employeeData.role.toLowerCase() !== "user"){
+                        if (employeeData.role.toLowerCase() !== "admin"){
+                            if (employeeData.role.toLowerCase() === "employee"){
+                                count++;
+                                data += `<tr>
+                                            <td>${employeeData.id}</td>
+                                            <td>${employeeData.name}</td>
+                                            <td>${employeeData.address}</td>
+                                            <td>${employeeData.number}</td>
+                                            <td>${employeeData.email}</td> 
+                                        </tr>`;
+                            }
+                        }else {
+                            adminCount++;
+                        }
                     }
+
                 });
                 $('#employee_tbody').append(data);
 
             }
+        });
+
+        $.ajax({
+            url:"http://localhost:8080/api/v1/placeOrder/getAll",
+            method:"GET",
+            dataType:"json",
+            success:function(response){
+                const orders = response.data;
+                let html = "";
+
+                orders.forEach(order=>{
+                    html += `
+                        <tr>
+                            <td>${order.id}</td>
+                            <td>${order.cusId}</td>
+                            <td>${order.totalPrice}</td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td>
+                                <span>
+                                    <button class="action-btn-orders"><i class="fas fa-check"></i></button>
+                                    <button class="action-btn-orders"><i class="fas fa-times"></i></button>
+                                    <button class="action-btn-orders"><i class="fas fa-trash"></i></button>
+                                </span>
+                            </td>
+                        </tr>
+                    `;
+                });
+                document.getElementById("ordersTbody").innerHTML = html;
+            }
+
         });
 
 });
@@ -521,20 +560,33 @@ function loadEmployeeIds(count){
     return id;
 }
 
+function loadAdminIds(count){
+    let counts = count + 1;
+    let id = "A" + counts.toString().padStart(3, "0");
+    return id;
+}
+
     $("#addEmployees").on('click',function () {
         $("#employeeTable").css("display","none");
         $("#addEmployeeForm").css("display","block");
     });
 
     $("#addEmployee").on('click', function () {
+        let id;
+
+        if ($('#selectRole').val().toLowerCase() === "employee"){
+            id = loadEmployeeIds(count)
+        }else {
+            id = loadAdminIds(adminCount)
+        }
        const employee = {
-           id : loadEmployeeIds(count),
+           id : id,
            name: $('#name').val(),
            address: $('#address').val(),
            number: $('#number').val(),
            email: $('#email').val(),
            password: $('#password').val(),
-           role : "employee",
+           role : $('#selectRole').val(),
        };
        $.ajax({
            url: "http://localhost:8080/api/v1/user/register",
@@ -577,6 +629,7 @@ $('#backBtn').on('click',function () {
     $('#employeeTable').css("display","block");
     $("#addEmployeeForm").css("display","none");
 });
+
 
 
 
