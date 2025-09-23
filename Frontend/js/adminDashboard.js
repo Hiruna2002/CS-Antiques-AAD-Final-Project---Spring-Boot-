@@ -493,8 +493,7 @@ $('#employee').on('click',function () {
             $("#width-height-length").css({
                 "display": "flex",
                 "justify-content": "space-between"
-            });   // show when Pettagam
-               // show when Pettagam
+            });
 
         } else {
             $("#width-height-length").hide();   // hide for all other categories
