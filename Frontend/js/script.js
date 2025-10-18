@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    localStorage.removeItem("csLoginEmail");
     let email = localStorage.getItem("csLoginEmail")
 
     if (email === null){

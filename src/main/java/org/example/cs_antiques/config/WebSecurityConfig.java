@@ -59,6 +59,8 @@ public class WebSecurityConfig {
                                 "/api/v1/placeOrder/getAll",
                                 "/api/v1/blog/getAll",
                                 "/api/v1/blog/savePost",
+                                "/api/v1/library/saveImage",
+                                "/api/v1/library/getAll",
                                 "/api/v1/marketplace/**",
                                 "/api/v1/user/**",
                                 "/api/v1/dashboard/**",

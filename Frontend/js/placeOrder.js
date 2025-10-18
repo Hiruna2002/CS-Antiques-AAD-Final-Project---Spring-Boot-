@@ -64,11 +64,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         // Update total for COD
-        if (method.value === 'cod') {
-            document.getElementById('totalAmount').textContent = '$1,275.35';
-        } else {
-            document.getElementById('totalAmount').textContent = '$1,270.35';
-        }
+        // if (method.value === 'cod') {
+        //     document.getElementById('totalAmount').textContent = '$1,275.35';
+        // } else {
+        //     document.getElementById('totalAmount').textContent = '$1,270.35';
+        // }
     });
 });
 

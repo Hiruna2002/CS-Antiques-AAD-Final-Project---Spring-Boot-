@@ -41,7 +41,7 @@
                 Swal.fire({
                     title: "Login Successfully!",
                     icon: "success",
-                });
+                })
 
                 if (page.role.toLowerCase() === "user") {
                     window.location.href = "../../Frontend/index.html";
